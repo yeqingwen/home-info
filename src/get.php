@@ -119,5 +119,5 @@ function getAllMeter($filename, $start=1, $end=50) {
     fclose($fh);
 }
 
-// getAllUser('../output/user.txt', 1, 1550);
+getAllUser('../output/user.txt', 1, 1550);
 getAllMeter('../output/meter.txt', 1, 1550);
