@@ -5,7 +5,8 @@
  */
 require_once('../config/config.php');
 require_once('../lib/HttpLib.php');
-class User
+require_once('Base.php');
+class User extends Base
 {
 /*
 {
@@ -73,14 +74,14 @@ public static function getAllUser($filename, $start=1, $end=50) {
             $user_info = $result['WxUser'];
             $content = sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
                 $i,
-                filterStr($user_info['cName']),
-                filterStr($user_info["iD"]),
-                filterStr($user_info["password"]),
-                filterStr($user_info["phone"]),
-                filterStr($user_info["remark"]),
-                filterStr($user_info["sex"]),
-                filterStr($user_info["userName"]),
-                filterStr($user_info["wxID"])
+                self::filterStr($user_info['cName']),
+                self::filterStr($user_info["iD"]),
+                self::filterStr($user_info["password"]),
+                self::filterStr($user_info["phone"]),
+                self::filterStr($user_info["remark"]),
+                self::filterStr($user_info["sex"]),
+                self::filterStr($user_info["userName"]),
+                self::filterStr($user_info["wxID"])
             );
             echo $content;
             fwrite($fh, $content);
@@ -100,13 +101,13 @@ public static function getAllMeter($filename, $start=1, $end=50) {
             foreach ($meters as $meter) {
                 $content = sprintf("%s,%s,%s,%s,%s,%s,%s,%s\n",
                     $i,
-                    filterStr($meter['installtime']),
-                    filterStr($meter["location"]),
-                    filterStr($meter["meternumber"]),
-                    filterStr($meter["mid"]),
-                    filterStr($meter["onlineflag"]),
-                    filterStr($meter["price"]),
-                    filterStr($meter["type"])
+                    self::filterStr($meter['installtime']),
+                    self::filterStr($meter["location"]),
+                    self::filterStr($meter["meternumber"]),
+                    self::filterStr($meter["mid"]),
+                    self::filterStr($meter["onlineflag"]),
+                    self::filterStr($meter["price"]),
+                    self::filterStr($meter["type"])
                 );
                 echo $content;
                 fwrite($fh, $content);

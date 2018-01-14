@@ -5,7 +5,8 @@
  */
 require_once('../config/config.php');
 require_once('../lib/HttpLib.php');
-class Meter
+require_once('Base.php');
+class Meter extends Base
 {
 
 /*
@@ -91,19 +92,19 @@ public static function getAllMeterInfo($filename, $start=1, $end=50) {
             $meter = $result['meterAct'];
             $content = sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
                 $i,
-                filterStr($meter['balanceAmount']),
-                filterStr($meter['hoardingLimit']),
-                filterStr($meter['lastMonth']),
-                filterStr($meter['lastReadTime']),
-                filterStr($meter['meterValue']),
-                filterStr($meter['overdraftLimit']),
-                filterStr($meter['overdraftMoney']),
-                filterStr($meter['rKV']),
-                filterStr($meter['rMA']),
-                filterStr($meter['rPrice']),
-                filterStr($meter['rTotalCharge']),
-                filterStr($meter['switchState']),
-                filterStr($meter['thisMonth'])
+                self::filterStr($meter['balanceAmount']),
+                self::filterStr($meter['hoardingLimit']),
+                self::filterStr($meter['lastMonth']),
+                self::filterStr($meter['lastReadTime']),
+                self::filterStr($meter['meterValue']),
+                self::filterStr($meter['overdraftLimit']),
+                self::filterStr($meter['overdraftMoney']),
+                self::filterStr($meter['rKV']),
+                self::filterStr($meter['rMA']),
+                self::filterStr($meter['rPrice']),
+                self::filterStr($meter['rTotalCharge']),
+                self::filterStr($meter['switchState']),
+                self::filterStr($meter['thisMonth'])
             );
             echo $content;
             fwrite($fh, $content);
@@ -125,8 +126,8 @@ public static function getAllMeterHistory($filename, $start=1, $end=50, $month=0
                 $content = sprintf("%s,%s,%s,%s\n",
                     $i,
                     $month,
-                    filterStr($value),
-                    filterStr($value_arr[$key])
+                    self::filterStr($value),
+                    self::filterStr($value_arr[$key])
                 );
                 echo $content;
                 fwrite($fh, $content);
@@ -147,10 +148,10 @@ public static function getAllMeterCharge($filename, $start=1, $end=50) {
             foreach ($charges as $charge) {
                 $content = sprintf("%s,%s,%s,%s,%s\n",
                     $i,
-                    filterStr($charge['amount']),
-                    filterStr($charge['chargeTime']),
-                    filterStr($charge['quantity']),
-                    filterStr($charge['remainAmount'])
+                    self::filterStr($charge['amount']),
+                    self::filterStr($charge['chargeTime']),
+                    self::filterStr($charge['quantity']),
+                    self::filterStr($charge['remainAmount'])
                 );
                 echo $content;
                 fwrite($fh, $content);
