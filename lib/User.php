@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * User 类
@@ -69,7 +69,7 @@ public static function getAllUser($filename, $start=1, $end=50) {
     $head_line = "user_id,cName,iD,password,phone,remark,sex,userName,wxID\n";
     echo $head_line;
     fwrite($fh, $head_line);
-    for ($i=$start; $i < $end; $i++) {
+    for ($i=$start; $i <= $end; $i++) {
         if(($result = self::getuser($i)) && isset($result['WxUser'])) {
             $user_info = $result['WxUser'];
             $content = sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
@@ -95,7 +95,7 @@ public static function getAllMeter($filename, $start=1, $end=50) {
     $head_line = "user_id,installtime,location,meternumber,mid,onlineflag,price,type\n";
     echo $head_line;
     fwrite($fh, $head_line);
-    for ($i=$start; $i < $end; $i++) {
+    for ($i=$start; $i <= $end; $i++) {
         if(($result = self::getUserMeter($i)) && isset($result['Meters'])) {
             $meters = $result['Meters'];
             foreach ($meters as $meter) {

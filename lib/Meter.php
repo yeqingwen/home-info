@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * User 类
@@ -46,7 +46,7 @@ public static function getMeteractInfo($mid) {
     "index": "3,4,5,6,7",
     "value": "251.80,114.10,160.00,325.10,255.30"
 */
-public static function getHistory($mid, $year=2017, $month=0) {
+public static function getHistory($mid, $year=2018, $month=0) {
     $post_data = [
         'action'    => 'gethis',
         'mid'       => $mid,
@@ -87,7 +87,7 @@ public static function getAllMeterInfo($filename, $start=1, $end=50) {
     $head_line = "mid,balanceAmount,hoardingLimit,lastMonth,lastReadTime,meterValue,overdraftLimit,overdraftMoney,rKV,rMA,rPrice,rTotalCharge,switchState,thisMonth\n";
     echo $head_line;
     fwrite($fh, $head_line);
-    for ($i=$start; $i < $end; $i++) {
+    for ($i=$start; $i <= $end; $i++) {
         if(($result = self::getMeteractInfo($i)) && isset($result['meterAct'])) {
             $meter = $result['meterAct'];
             $content = sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
@@ -118,7 +118,7 @@ public static function getAllMeterHistory($filename, $start=1, $end=50, $month=0
     $head_line = "mid,month,index,value\n";
     echo $head_line;
     fwrite($fh, $head_line);
-    for ($i=$start; $i < $end; $i++) {
+    for ($i=$start; $i <= $end; $i++) {
         if(($result = self::getHistory($i)) && isset($result['value'])) {
             $index_arr = explode(',', $result['index']);
             $value_arr = explode(',', $result['value']);
@@ -142,7 +142,7 @@ public static function getAllMeterCharge($filename, $start=1, $end=50) {
     $head_line = "mid,amount,chargeTime,quantity,remainAmount\n";
     echo $head_line;
     fwrite($fh, $head_line);
-    for ($i=$start; $i < $end; $i++) {
+    for ($i=$start; $i <= $end; $i++) {
         if(($result = self::getMeterCharge($i)) && isset($result['Charges'])) {
             $charges = $result['Charges'];
             foreach ($charges as $charge) {
